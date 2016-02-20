@@ -1,10 +1,11 @@
 function homeCtrl($scope, thisVersion) {
 
 	$scope.version = thisVersion.version;
+
 }
 
-function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $ionicPopup, $timeout, $translate) {
-	
+function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $ionicPopup, $timeout, $translate, $filter) {
+
 	var placeholders = $translate.instant(['DMG_GAME_LOADING', 'DMG_GAME_CONGRATULATIONS', 'DMG_GAME_YOUR_TIME', 'DMG_GAME_PLAY_AGAIN', 'DMG_GAME_THANK_YOU', 'DMG_GAME_THANK_YOU_VERY_MUCH']);
 
 
@@ -84,6 +85,36 @@ function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $i
 
 }
 
+function settingsCtrl($scope, $rootScope, $localstorageService, $translate, cookieName) {
+
+	$scope.language = $rootScope.globals.language;
+	$scope.level = $rootScope.globals.level;
+	$scope.saveLanguage = saveLanguage;
+	$scope.saveLevel = saveLevel;
+
+	function saveLanguage(key) {
+		$rootScope.globals.language = key;
+		$scope.language = key;
+		$translate.use(key);
+		$localstorageService.setObject(cookieName, $rootScope.globals);
+	}
+
+	function saveLevel(level) {
+		$rootScope.globals.level = level;
+		$scope.level = level;
+		$localstorageService.setObject(cookieName, $rootScope.globals);
+	}
+
+}
+
+function aboutCtrl($scope, thisVersion) {
+
+	$scope.version = thisVersion.version;
+
+}
+
 angular.module('dokl.controllers', [])
 	.controller('homeCtrl', homeCtrl)
-	.controller('gameCtrl', gameCtrl);
+	.controller('gameCtrl', gameCtrl)
+	.controller('settingsCtrl', settingsCtrl)
+	.controller('aboutCtrl', aboutCtrl);

@@ -83,6 +83,24 @@ angular.module('dokl', [
           controller: "gameCtrl"
         }
       }
+    })
+    .state('app.settings', {
+      url: "/settings",
+      views: {
+        'app-view': {
+          templateUrl: "tpls/settings.html",
+          controller: "settingsCtrl"
+        }
+      }
+    })
+    .state('app.about', {
+      url: "/about",
+      views: {
+        'app-view': {
+          templateUrl: "tpls/about.html",
+          controller: "aboutCtrl"
+        }
+      }
     });
 
   // Default route
