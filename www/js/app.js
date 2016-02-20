@@ -3,7 +3,14 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'dokl' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('dokl', ['ionic', 'dokl.controllers', 'dokl.services', 'dokl.constants'])
+angular.module('dokl', [
+  'ionic',
+  'dokl.controllers',
+  'dokl.services',
+  'dokl.constants',
+  'dokl.filters',
+  'pascalprecht.translate'
+])
 
 .run(function($ionicPlatform, $localstorageService, $rootScope, cookieName, thisVersion) {
   $ionicPlatform.ready(function() {
@@ -31,12 +38,26 @@ angular.module('dokl', ['ionic', 'dokl.controllers', 'dokl.services', 'dokl.cons
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $translateProvider) {
   // Hide the text of the back button, only an arrow is displayed
   $ionicConfigProvider.backButton.previousTitleText(false).text('');
   // Center nav bar title
   $ionicConfigProvider.navBar.alignTitle('center');
 
+  // Translations
+  $translateProvider
+    .useStaticFilesLoader({
+      prefix: 'locales/',
+      suffix: '.js'
+    })
+    .registerAvailableLanguageKeys(['es', 'en'], {
+      'es': 'es', 'es_ES': 'es',
+      'en': 'en', 'en_US': 'en'
+    })
+    .preferredLanguage('es')
+    .fallbackLanguage('es')
+    .determinePreferredLanguage()
+    .useSanitizeValueStrategy('escapeParameters');
 
   // Routes
   $stateProvider
@@ -51,6 +72,33 @@ angular.module('dokl', ['ionic', 'dokl.controllers', 'dokl.services', 'dokl.cons
         'app-view': {
           templateUrl: "tpls/home.html",
           controller: "homeCtrl"
+        }
+      }
+    })
+    .state('app.game', {
+      url: "/game",
+      views: {
+        'app-view': {
+          templateUrl: "tpls/game.html",
+          controller: "gameCtrl"
+        }
+      }
+    })
+    .state('app.settings', {
+      url: "/settings",
+      views: {
+        'app-view': {
+          templateUrl: "tpls/settings.html",
+          controller: "settingsCtrl"
+        }
+      }
+    })
+    .state('app.about', {
+      url: "/about",
+      views: {
+        'app-view': {
+          templateUrl: "tpls/about.html",
+          controller: "aboutCtrl"
         }
       }
     });

@@ -54,3 +54,149 @@ $chicken: #fffcdb !default;
 .m-t-md {
 	margin-top: 30px;
 }
+
+.item-divider {
+  font-weight: 500;
+  background-color: darken($stable, 10%);
+}
+
+.dmg-card-container {
+	width: 100%;
+	position: relative;
+	-webkit-perspective: 400px;
+	   -moz-perspective: 400px;
+	    -ms-perspective: 400px;
+	     -o-perspective: 400px;
+	        perspective: 400px;
+}
+
+.dmg-card-container.dmg-level-2 {height: 120px;}
+.dmg-card-container.dmg-level-3 {height: 105px;}
+.dmg-card-container.dmg-level-4 {height: 95px;}
+.dmg-card-container.dmg-level-5 {height: 80px;}
+
+.dmg-card-container .dmg-card {
+	width: 100%;
+	height: 100%;
+	box-shadow: 0 19px 38px rgba(0,0,0,0.45), 0 15px 12px rgba(0,0,0,0.22);
+	border-radius: 10px;
+	-webkit-transition: .35s;
+	   -moz-transition: .35s;
+	    -ms-transition: .35s;
+	     -o-transition: .35s;
+	        transition: .35s;
+	-webkit-transform-style: preserve-3d;
+	   -moz-transform-style: preserve-3d;
+	    -ms-transform-style: preserve-3d;
+	     -o-transform-style: preserve-3d;
+	        transform-style: preserve-3d;
+}
+
+.dmg-card-container .dmg-card .dmg-card-face {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	border-radius: 10px;
+	-webkit-backface-visibility: hidden;
+	   -moz-backface-visibility: hidden;
+	    -ms-backface-visibility: hidden;
+	     -o-backface-visibility: hidden;
+	        backface-visibility: hidden;
+}
+
+.dmg-card-container .dmg-card .dmg-card-front {
+	position: absolute;
+	text-align: center;
+	color: darken($chicken, 70%);
+	background-color: $chicken;
+	border: 7px double darken($chicken, 55%);
+}
+
+.dmg-card-front.dmg-level-2 {
+	line-height: 105px;
+	font-size: 70px;
+}
+
+.dmg-card-front.dmg-level-3 {
+	line-height: 95px;
+	font-size: 60px;
+}
+
+.dmg-card-front.dmg-level-4 {
+	line-height: 85px;
+	font-size: 55px;
+}
+
+.dmg-card-front.dmg-level-5 {
+	line-height: 75px;
+	font-size: 45px;
+	border: 4px double darken($chicken, 55%) !important;
+}
+
+.dmg-card-container .dmg-card .dmg-card-back {
+	background-color: darken($calm, 25%);
+	color: $balanced;
+	text-align: center;
+	border: 3px solid darken($light, 5%);
+	border-radius: 10px;
+}
+
+.dmg-card-back.dmg-level-2 {
+	line-height: 115px;
+	font-size: 85px;
+}
+
+.dmg-card-back.dmg-level-3 {
+	line-height: 100px;
+	font-size: 75px;
+}
+
+.dmg-card-back.dmg-level-4 {
+	line-height: 90px;
+	font-size: 70px;
+}
+
+.dmg-card-back.dmg-level-5 {
+	line-height: 75px;
+	font-size: 60px;
+}
+
+.dmg-card-container .dmg-card.dmg-flipped,
+.dmg-card-container .dmg-card .dmg-card-front {
+	-webkit-transform: rotateY(180deg);
+	   -moz-transform: rotateY(180deg);
+	    -ms-transform: rotateY(180deg);
+	     -o-transform: rotateY(180deg);
+	        transform: rotateY(180deg);
+}
+
+.padding-top-lg {padding-top: 80px;}
+
+.cs-jumbotron {
+  background-color: $stable;
+  padding: 10px;
+  margin: 15px auto 0;
+  max-width: 280px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.cs-jumbotron h1,
+.cs-jumbotron h2 {
+  font-family: 'MoonFlower', serif;
+  font-size: 50px;
+  color: darken($stable, 40%);
+}
+
+.cs-jumbotron .version {
+  color: $positive;
+}
+
+.cs-jumbotron.dedication {background-color: darken($balanced, 10%);}
+
+.cs-jumbotron.dedication h2,
+.cs-jumbotron.dedication h4 {color: $light;}
+.cs-jumbotron.dedication i {
+  color: darken($assertive, 10%);
+  font-size: 40px;
+}
