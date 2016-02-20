@@ -21,3 +21,36 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+$chicken: #fffcdb !default;
+
+@font-face {
+    font-family: 'MoonFlower';
+    src: url('../fonts/MoonFlower.eot');
+    src: url('../fonts/MoonFlower.eot') format('embedded-opentype'),
+         url('../fonts/MoonFlower.woff2') format('woff2'),
+         url('../fonts/MoonFlower.woff') format('woff'),
+         url('../fonts/MoonFlower.ttf') format('truetype'),
+         url('../fonts/MoonFlower.svg#MoonFlower') format('svg');
+}
+
+.pane-home,
+.pane-game,
+.pane-about {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.pane-home {background-image: url('../img/home-bg.jpg');}
+.pane-game {background-image: url('../img/game-bg.jpg');}
+.pane-about {background-image: url('../img/about-bg.png');}
+
+.col-button {
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+.m-t-md {
+	margin-top: 30px;
+}
