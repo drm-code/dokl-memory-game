@@ -19,5 +19,7 @@
 	"DMG_SETTINGS_EASY": "Facil",
 	"DMG_SETTINGS_MEDIUM": "Intermedio",
 	"DMG_SETTINGS_HARD": "Dificil",
+	"DMG_SETTINGS_SOUNDS": "Sonidos",
+	"DMG_SETTINGS_ENABLE_SOUNDS": "Habilitar sonidos del juego",
 	"DMG_ABOUT_DEDICATION": "Este juego está dedicado a mi esposa"
 }

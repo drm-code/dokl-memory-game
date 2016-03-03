@@ -25,6 +25,12 @@
 			<ion-radio value="5" name="level" ng-model="level" ng-change="saveLevel(5)" ng-checked="level==5">
 				5 x 5<span translate="DMG_SETTINGS_HARD" class="item-note"></span>
 			</ion-radio>
+			<div class="item item-divider item-icon-left">
+				<i class="icon ion-volume-medium"></i>{{ 'DMG_SETTINGS_SOUNDS' | translate }}
+			</div>
+			<ion-toggle toggle-class="toggle-balanced" ng-checked="sounds" ng-model="sounds" ng-change="enableSounds()">
+				{{ 'DMG_SETTINGS_ENABLE_SOUNDS' | translate }}
+			</ion-toggle>
 		</div>
 	</ion-content>
 </ion-view>

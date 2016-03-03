@@ -73,18 +73,18 @@ $chicken: #fffcdb !default;
 .dmg-card-container.dmg-level-2 {height: 120px;}
 .dmg-card-container.dmg-level-3 {height: 105px;}
 .dmg-card-container.dmg-level-4 {height: 95px;}
-.dmg-card-container.dmg-level-5 {height: 80px;}
+.dmg-card-container.dmg-level-5 {height: 76px;}
 
 .dmg-card-container .dmg-card {
 	width: 100%;
 	height: 100%;
 	box-shadow: 0 19px 38px rgba(0,0,0,0.45), 0 15px 12px rgba(0,0,0,0.22);
 	border-radius: 10px;
-	-webkit-transition: .35s;
-	   -moz-transition: .35s;
-	    -ms-transition: .35s;
-	     -o-transition: .35s;
-	        transition: .35s;
+	-webkit-transition: .2s;
+	   -moz-transition: .2s;
+	    -ms-transition: .2s;
+	     -o-transition: .2s;
+	        transition: .2s;
 	-webkit-transform-style: preserve-3d;
 	   -moz-transform-style: preserve-3d;
 	    -ms-transform-style: preserve-3d;
@@ -96,7 +96,7 @@ $chicken: #fffcdb !default;
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	border-radius: 10px;
+	border-radius: 5px;
 	-webkit-backface-visibility: hidden;
 	   -moz-backface-visibility: hidden;
 	    -ms-backface-visibility: hidden;
@@ -109,36 +109,36 @@ $chicken: #fffcdb !default;
 	text-align: center;
 	color: darken($chicken, 70%);
 	background-color: $chicken;
-	border: 7px double darken($chicken, 55%);
+	border: 2px solid darken($chicken, 55%);
 }
 
 .dmg-card-front.dmg-level-2 {
-	line-height: 105px;
+	line-height: 115px;
 	font-size: 70px;
 }
 
 .dmg-card-front.dmg-level-3 {
-	line-height: 95px;
+	line-height: 100px;
 	font-size: 60px;
 }
 
 .dmg-card-front.dmg-level-4 {
-	line-height: 85px;
+	line-height: 90px;
 	font-size: 55px;
 }
 
 .dmg-card-front.dmg-level-5 {
 	line-height: 75px;
 	font-size: 45px;
-	border: 4px double darken($chicken, 55%) !important;
+	border: 2px solid darken($chicken, 50%) !important;
 }
 
 .dmg-card-container .dmg-card .dmg-card-back {
 	background-color: darken($calm, 25%);
 	color: $balanced;
 	text-align: center;
-	border: 3px solid darken($light, 5%);
-	border-radius: 10px;
+	border: 2px solid darken($light, 5%);
+	border-radius: 5px;
 }
 
 .dmg-card-back.dmg-level-2 {
