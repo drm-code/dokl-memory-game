@@ -9,10 +9,11 @@ angular.module('dokl', [
   'dokl.services',
   'dokl.constants',
   'dokl.filters',
-  'pascalprecht.translate'
+  'pascalprecht.translate',
+  'ngCordova'
 ])
 
-.run(function($ionicPlatform, $localstorageService, $rootScope, cookieName, thisVersion) {
+.run(function($ionicPlatform, $localstorageService, $rootScope, cookieName, thisVersion, $translate) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -28,14 +29,16 @@ angular.module('dokl', [
       StatusBar.styleDefault();
     }
 
-    // Get or set local variables
-    $rootScope.globals = $localstorageService.getObject(cookieName);
-    if (Object.keys($rootScope.globals).length == 0) {
-      $rootScope.globals = { language: 'es', level: 2 };
-      $localstorageService.setObject(cookieName, $rootScope.globals);
-    }
-    console.log('Dokl Memory Game (ver. ' + thisVersion.version + ')');
   });
+
+  // Get or set local variables
+  $rootScope.globals = $localstorageService.getObject(cookieName);
+  if (Object.keys($rootScope.globals).length == 0) {
+    $rootScope.globals = { language: 'es', level: 2, sounds: true };
+    $localstorageService.setObject(cookieName, $rootScope.globals);
+  }
+  $translate.use($rootScope.globals.language)
+  console.log('Dokl Memory Game (ver. ' + thisVersion.version + ')');
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $translateProvider) {

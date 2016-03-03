@@ -19,5 +19,7 @@
 	"DMG_SETTINGS_EASY": "Easy",
 	"DMG_SETTINGS_MEDIUM": "Medium",
 	"DMG_SETTINGS_HARD": "Hard",
+	"DMG_SETTINGS_SOUNDS": "Sounds",
+	"DMG_SETTINGS_ENABLE_SOUNDS": "Enable game sounds",
 	"DMG_ABOUT_DEDICATION": "This game is dedicated to my wife"
 }
