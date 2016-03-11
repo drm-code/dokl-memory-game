@@ -28,7 +28,6 @@ angular.module('dokl', [
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-
   });
 
   // Get or set local variables

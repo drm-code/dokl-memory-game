@@ -1,9 +1,18 @@
-function homeCtrl($scope, $rootScope, thisVersion, $ionicPlatform, $timeout, $cordovaNativeAudio) {
+function indexCtrl($scope, $ionicPlatform, $cordovaNativeAudio) {
+
+	
+}
+function homeCtrl($scope, $rootScope, thisVersion, $timeout, $ionicPlatform, $cordovaNativeAudio) {
 
 	$scope.version = thisVersion.version;
-	// $scope.sounds = $rootScope.globals.sounds;
 	$ionicPlatform.ready(function() {
 		$cordovaNativeAudio.preloadSimple('fx13', 'sounds/futuresoundfx-13.mp3');
+		$cordovaNativeAudio.preloadSimple('arcade', 'sounds/Arcade80kbps.mp3');
+		$cordovaNativeAudio.preloadSimple('fx2', 'sounds/futuresoundfx-2.mp3');
+		$cordovaNativeAudio.preloadSimple('fx3', 'sounds/futuresoundfx-3.mp3');
+		$cordovaNativeAudio.preloadSimple('fx40', 'sounds/futuresoundfx-40.mp3');
+		$cordovaNativeAudio.preloadSimple('fx52', 'sounds/futuresoundfx-52.mp3');
+		$cordovaNativeAudio.preloadSimple('b10', 'sounds/beep-10.mp3');
 	});
 	$scope.play = function(sound) {
 		if ($rootScope.globals.sounds) {
@@ -17,11 +26,23 @@ function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $i
 
 	var placeholders = $translate.instant(['DMG_GAME_LOADING', 'DMG_GAME_CONGRATULATIONS', 'DMG_GAME_YOUR_TIME', 'DMG_GAME_PLAY_AGAIN', 'DMG_GAME_THANK_YOU', 'DMG_GAME_THANK_YOU_VERY_MUCH']);
 
-
 	$scope.level = $rootScope.globals.level;
 	$scope.sounds = $rootScope.globals.sounds;
 	$scope.flip = flip;
 	$scope.newGame = newGame();
+	// $ionicPlatform.ready(function() {
+	// 	$cordovaNativeAudio.preloadSimple('arcade', 'sounds/Arcade80kbps.mp3');
+	// });
+	$scope.play = function(sound) {
+		if ($scope.sounds) {
+			if (sound == 'arcade') {
+				$cordovaNativeAudio.loop('arcade');
+			} else {
+				$cordovaNativeAudio.play(sound);
+			}
+		}
+	};
+	$scope.play('arcade');
 
 	function newGame() {
 		$scope.time = 0;
@@ -84,7 +105,6 @@ function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $i
 		}
 	}
 
-
 	function gameTime() {
 		return $interval(function() {
 			return $scope.time++;
@@ -97,19 +117,6 @@ function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $i
 			duration: 1500
 		});
 	}
-
-	$ionicPlatform.ready(function() {
-		$cordovaNativeAudio.preloadSimple('fx2', 'sounds/futuresoundfx-2.mp3');
-		$cordovaNativeAudio.preloadSimple('fx3', 'sounds/futuresoundfx-3.mp3');
-		$cordovaNativeAudio.preloadSimple('fx40', 'sounds/futuresoundfx-40.mp3');
-		$cordovaNativeAudio.preloadSimple('fx52', 'sounds/futuresoundfx-52.mp3');
-		$cordovaNativeAudio.preloadSimple('b10', 'sounds/beep-10.mp3');
-	});
-	$scope.play = function(sound) {
-		if ($scope.sounds) {
-			$cordovaNativeAudio.play(sound);
-		}
-	};
 
 }
 
@@ -150,6 +157,7 @@ function aboutCtrl($scope, thisVersion) {
 }
 
 angular.module('dokl.controllers', [])
+	.controller('indexCtrl', indexCtrl)
 	.controller('homeCtrl', homeCtrl)
 	.controller('gameCtrl', gameCtrl)
 	.controller('settingsCtrl', settingsCtrl)

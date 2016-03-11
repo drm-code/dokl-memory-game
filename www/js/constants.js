@@ -1,7 +1,7 @@
 angular.module('dokl.constants', [])
 	.constant('cookieName', 'global-settings.dmg.android')
 	.constant('thisVersion', {
-		version: '0.1-beta',
-		date: '20-04-2016',
-		codeName: 'First Avenger'
+		version: '0.2-beta',
+		date: '03-03-2016',
+		codeName: 'The Soundtrix'
 	});
