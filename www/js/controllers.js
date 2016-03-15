@@ -1,24 +1,40 @@
-function indexCtrl($scope, $ionicPlatform, $cordovaNativeAudio) {
+function indexCtrl($scope, $rootScope, $state, $timeout, $ionicPlatform, $cordovaNativeAudio) {
 
+	$scope.track = track;
+
+	function track() {
+		if ($state.current.name == 'app.game') {
+			if ($rootScope.globals.sounds) {
+				$cordovaNativeAudio.stop('arcade');
+				$cordovaNativeAudio.loop('softbyte');
+			}
+		}
+	}
 	
 }
+
 function homeCtrl($scope, $rootScope, thisVersion, $timeout, $ionicPlatform, $cordovaNativeAudio) {
 
 	$scope.version = thisVersion.version;
+	$scope.play = play;
+	$scope.stop = stop;
 	$ionicPlatform.ready(function() {
-		$cordovaNativeAudio.preloadSimple('fx13', 'sounds/futuresoundfx-13.mp3');
-		$cordovaNativeAudio.preloadSimple('arcade', 'sounds/Arcade80kbps.mp3');
-		$cordovaNativeAudio.preloadSimple('fx2', 'sounds/futuresoundfx-2.mp3');
-		$cordovaNativeAudio.preloadSimple('fx3', 'sounds/futuresoundfx-3.mp3');
-		$cordovaNativeAudio.preloadSimple('fx40', 'sounds/futuresoundfx-40.mp3');
-		$cordovaNativeAudio.preloadSimple('fx52', 'sounds/futuresoundfx-52.mp3');
-		$cordovaNativeAudio.preloadSimple('b10', 'sounds/beep-10.mp3');
+		if ($rootScope.globals.sounds) {
+			$cordovaNativeAudio.loop('softbyte');
+		}
 	});
-	$scope.play = function(sound) {
+
+	function play(sound) {
 		if ($rootScope.globals.sounds) {
 			$cordovaNativeAudio.play(sound);
 		}
-	};
+	}
+
+	function stop() {
+		if ($rootScope.globals.sounds) {
+			$cordovaNativeAudio.stop('softbyte');
+		}
+	}
 
 }
 
@@ -29,33 +45,9 @@ function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $i
 	$scope.level = $rootScope.globals.level;
 	$scope.sounds = $rootScope.globals.sounds;
 	$scope.flip = flip;
-	$scope.newGame = newGame();
-	// $ionicPlatform.ready(function() {
-	// 	$cordovaNativeAudio.preloadSimple('arcade', 'sounds/Arcade80kbps.mp3');
-	// });
-	$scope.play = function(sound) {
-		if ($scope.sounds) {
-			if (sound == 'arcade') {
-				$cordovaNativeAudio.loop('arcade');
-			} else {
-				$cordovaNativeAudio.play(sound);
-			}
-		}
-	};
+	$scope.play = play;
 	$scope.play('arcade');
-
-	function newGame() {
-		$scope.time = 0;
-		$scope.loading = loading();
-		$timeout(function() {
-			$scope.time = 0;
-			$scope.matched = 0;
-			$scope.fPick = undefined;
-			$scope.sPick = undefined;
-			$scope.gameTime = gameTime();
-		}, 1000);
-		$scope.grid = $gameService.grid();
-	}
+	$scope.newGame = newGame();
 
 	function flip(card) {
 		if ($scope.matched < $gameService.pairs()) {
@@ -105,6 +97,29 @@ function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $i
 		}
 	}
 
+	function play(sound) {
+		if ($scope.sounds) {
+			if (sound == 'arcade') {
+				$cordovaNativeAudio.loop(sound);
+			} else {
+				$cordovaNativeAudio.play(sound);
+			}
+		}
+	}
+
+	function newGame() {
+		$scope.time = 0;
+		$scope.loading = loading();
+		$timeout(function() {
+			$scope.time = 0;
+			$scope.matched = 0;
+			$scope.fPick = undefined;
+			$scope.sPick = undefined;
+			$scope.gameTime = gameTime();
+		}, 1000);
+		$scope.grid = $gameService.grid();
+	}
+
 	function gameTime() {
 		return $interval(function() {
 			return $scope.time++;
@@ -120,7 +135,7 @@ function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $i
 
 }
 
-function settingsCtrl($scope, $rootScope, $localstorageService, $translate, cookieName) {
+function settingsCtrl($scope, $rootScope, $localstorageService, $translate, cookieName, $timeout, $ionicPlatform, $cordovaNativeAudio) {
 
 	$scope.language = $rootScope.globals.language;
 	$scope.level = $rootScope.globals.level;
@@ -146,6 +161,11 @@ function settingsCtrl($scope, $rootScope, $localstorageService, $translate, cook
 		$scope.sounds = !$scope.sounds;
 		$rootScope.globals.sounds = $scope.sounds;
 		$localstorageService.setObject(cookieName, $rootScope.globals);
+		if ($scope.sounds) {
+			$cordovaNativeAudio.loop('softbyte');
+		} else {
+			$cordovaNativeAudio.stop('softbyte');
+		}
 	}
 
 }
