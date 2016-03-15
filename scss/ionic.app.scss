@@ -64,10 +64,6 @@ $chicken: #fffcdb !default;
 	width: 100%;
 	position: relative;
 	-webkit-perspective: 400px;
-	   -moz-perspective: 400px;
-	    -ms-perspective: 400px;
-	     -o-perspective: 400px;
-	        perspective: 400px;
 }
 
 .dmg-card-container.dmg-level-2 {height: 120px;}
@@ -80,16 +76,8 @@ $chicken: #fffcdb !default;
 	height: 100%;
 	box-shadow: 0 19px 38px rgba(0,0,0,0.45), 0 15px 12px rgba(0,0,0,0.22);
 	border-radius: 10px;
-	-webkit-transition: .2s;
-	   -moz-transition: .2s;
-	    -ms-transition: .2s;
-	     -o-transition: .2s;
-	        transition: .2s;
+	-webkit-transition: .25s;
 	-webkit-transform-style: preserve-3d;
-	   -moz-transform-style: preserve-3d;
-	    -ms-transform-style: preserve-3d;
-	     -o-transform-style: preserve-3d;
-	        transform-style: preserve-3d;
 }
 
 .dmg-card-container .dmg-card .dmg-card-face {
@@ -98,10 +86,6 @@ $chicken: #fffcdb !default;
 	position: absolute;
 	border-radius: 5px;
 	-webkit-backface-visibility: hidden;
-	   -moz-backface-visibility: hidden;
-	    -ms-backface-visibility: hidden;
-	     -o-backface-visibility: hidden;
-	        backface-visibility: hidden;
 }
 
 .dmg-card-container .dmg-card .dmg-card-front {
@@ -164,10 +148,6 @@ $chicken: #fffcdb !default;
 .dmg-card-container .dmg-card.dmg-flipped,
 .dmg-card-container .dmg-card .dmg-card-front {
 	-webkit-transform: rotateY(180deg);
-	   -moz-transform: rotateY(180deg);
-	    -ms-transform: rotateY(180deg);
-	     -o-transform: rotateY(180deg);
-	        transform: rotateY(180deg);
 }
 
 .padding-top-lg {padding-top: 80px;}
