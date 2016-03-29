@@ -13,7 +13,7 @@ angular.module('dokl', [
   'ngCordova'
 ])
 
-.run(function($ionicPlatform, $localstorageService, $rootScope, cookieName, thisVersion, $translate, $cordovaNativeAudio) {
+.run(function($ionicPlatform, $localstorageService, $rootScope, cookieName, thisVersion, $translate, $cordovaNativeAudio, $state, $timeout) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -30,13 +30,29 @@ angular.module('dokl', [
     }
     $cordovaNativeAudio.preloadSimple('fx13', 'sounds/futuresoundfx-13.mp3');
     $cordovaNativeAudio.preloadSimple('arcade', 'sounds/Arcade80kbps.mp3');
-    $cordovaNativeAudio.preloadSimple('softbyte', 'sounds/2013-08-09_LOOP_SoftByte_b.mp3');
     $cordovaNativeAudio.preloadSimple('fx2', 'sounds/futuresoundfx-2.mp3');
     $cordovaNativeAudio.preloadSimple('fx3', 'sounds/futuresoundfx-3.mp3');
     $cordovaNativeAudio.preloadSimple('fx40', 'sounds/futuresoundfx-40.mp3');
     $cordovaNativeAudio.preloadSimple('fx52', 'sounds/futuresoundfx-52.mp3');
     $cordovaNativeAudio.preloadSimple('b10', 'sounds/beep-10.mp3');
   });
+  
+  // Try to catch physical OS back button
+  $ionicPlatform.registerBackButtonAction(function() {
+    switch ($state.current.name) {
+      case 'app.game':
+      case 'app.setings':
+      case 'app.about':                      
+                      if ($rootScope.globals.sounds && $state.current.name == 'app.game') {
+                        $cordovaNativeAudio.stop('arcade');
+                      }
+                      $state.go('app.home');
+                      break;
+
+      case 'app.home':
+                      ionic.Platform.exitApp();
+    }
+  }, 100);
 
   // Get or set local variables
   $rootScope.globals = $localstorageService.getObject(cookieName);

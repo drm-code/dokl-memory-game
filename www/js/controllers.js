@@ -3,11 +3,8 @@ function indexCtrl($scope, $rootScope, $state, $timeout, $ionicPlatform, $cordov
 	$scope.track = track;
 
 	function track() {
-		if ($state.current.name == 'app.game') {
-			if ($rootScope.globals.sounds) {
-				$cordovaNativeAudio.stop('arcade');
-				$cordovaNativeAudio.loop('softbyte');
-			}
+		if ($state.current.name == 'app.game' && $rootScope.globals.sounds) {
+			$cordovaNativeAudio.stop('arcade');
 		}
 	}
 	
@@ -17,22 +14,10 @@ function homeCtrl($scope, $rootScope, thisVersion, $timeout, $ionicPlatform, $co
 
 	$scope.version = thisVersion.version;
 	$scope.play = play;
-	$scope.stop = stop;
-	$ionicPlatform.ready(function() {
-		if ($rootScope.globals.sounds) {
-			$cordovaNativeAudio.loop('softbyte');
-		}
-	});
 
 	function play(sound) {
 		if ($rootScope.globals.sounds) {
 			$cordovaNativeAudio.play(sound);
-		}
-	}
-
-	function stop() {
-		if ($rootScope.globals.sounds) {
-			$cordovaNativeAudio.stop('softbyte');
 		}
 	}
 
@@ -161,11 +146,6 @@ function settingsCtrl($scope, $rootScope, $localstorageService, $translate, cook
 		$scope.sounds = !$scope.sounds;
 		$rootScope.globals.sounds = $scope.sounds;
 		$localstorageService.setObject(cookieName, $rootScope.globals);
-		if ($scope.sounds) {
-			$cordovaNativeAudio.loop('softbyte');
-		} else {
-			$cordovaNativeAudio.stop('softbyte');
-		}
 	}
 
 }
