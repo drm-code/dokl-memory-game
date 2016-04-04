@@ -1,0 +1,12 @@
+{
+  "name": "HelloIonic",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.2.4"
+  },
+  "dependencies": {
+    "angular-translate": "^2.9.1",
+    "angular-translate-loader-static-files": "^2.9.1",
+    "ngCordova": "^0.1.24-alpha"
+  }
+}

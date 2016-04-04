@@ -1,0 +1,36 @@
+<ion-view view-title="{{ 'DMG_SETTINGS' | translate }}">
+	<ion-content>
+		<div class="list">
+			<div class="item item-divider item-icon-left">
+				<i class="icon ion-earth"></i>{{ 'DMG_SETTINGS_LANGUAGE' | translate }}
+			</div>
+			<ion-radio value="es" name="language" ng-model="language" ng-change="saveLanguage('es')" ng-checked="language=='es'">
+				<span translate="DMG_SETTINGS_SPANISH"></span>
+			</ion-radio>
+			<ion-radio value="en" name="language" ng-model="language" ng-change="saveLanguage('en')" ng-checked="language=='en'">
+				<span translate="DMG_SETTINGS_ENGLISH"></span>
+			</ion-radio>
+			<div class="item item-divider item-icon-left">
+				<i class="icon ion-android-apps"></i>{{ 'DMG_SETTINGS_LEVEL' | translate }}
+			</div>
+			<ion-radio value="2" name="level" ng-model="level" ng-change="saveLevel(2)" ng-checked="level==2">
+				2 x 2<span translate="DMG_SETTINGS_VERY_EASY" class="item-note"></span>
+			</ion-radio>
+			<ion-radio value="3" name="level" ng-model="level" ng-change="saveLevel(3)" ng-checked="level==3">
+				3 x 3<span translate="DMG_SETTINGS_EASY" class="item-note"></span>
+			</ion-radio>
+			<ion-radio value="4" name="level" ng-model="level" ng-change="saveLevel(4)" ng-checked="level==4">
+				4 x 4<span translate="DMG_SETTINGS_MEDIUM" class="item-note"></span>
+			</ion-radio>
+			<ion-radio value="5" name="level" ng-model="level" ng-change="saveLevel(5)" ng-checked="level==5">
+				5 x 5<span translate="DMG_SETTINGS_HARD" class="item-note"></span>
+			</ion-radio>
+			<div class="item item-divider item-icon-left">
+				<i class="icon ion-volume-medium"></i>{{ 'DMG_SETTINGS_SOUNDS' | translate }}
+			</div>
+			<ion-toggle toggle-class="toggle-balanced" ng-checked="sounds" ng-model="sounds" ng-change="enableSounds()">
+				{{ 'DMG_SETTINGS_ENABLE_SOUNDS' | translate }}
+			</ion-toggle>
+		</div>
+	</ion-content>
+</ion-view>

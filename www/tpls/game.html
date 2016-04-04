@@ -1,0 +1,22 @@
+<ion-view view-title="{{ time | secondsToTime | date:'HH:mm:ss' }}" class="pane-game">
+	<ion-content>
+		<div class="row" ng-repeat="row in grid">
+			<div ng-if="level==2" class="col col-20"></div>
+			<div ng-if="level==3" class="col col-10"></div>
+			<div class="col" ng-repeat="card in row">
+				<div class="dmg-card-container dmg-level-{{level}}">
+					<div class="dmg-card" ng-class="{'dmg-flipped': card.flipped}" on-touch="flip(card)">
+						<div class="dmg-card-face dmg-card-front dmg-level-{{level}}">
+							<i class="icon {{ card.icon }}"></i>
+						</div>
+						<div class="dmg-card-face dmg-card-back dmg-level-{{level}}">
+							<i class="icon ion-social-android"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div ng-if="level==2" class="col col-20"></div>
+			<div ng-if="level==3" class="col col-10"></div>
+		</div>
+	</ion-content>
+</ion-view>
