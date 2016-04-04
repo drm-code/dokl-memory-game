@@ -41,7 +41,7 @@ angular.module('dokl', [
   $ionicPlatform.registerBackButtonAction(function() {
     switch ($state.current.name) {
       case 'app.game':
-      case 'app.setings':
+      case 'app.settings':
       case 'app.about':                      
                       if ($rootScope.globals.sounds && $state.current.name == 'app.game') {
                         $cordovaNativeAudio.stop('arcade');
