@@ -1,29 +1,29 @@
-function indexCtrl($scope, $rootScope, $state, $timeout, $ionicPlatform, $cordovaNativeAudio) {
+function indexCtrl($scope, $rootScope, $state, $timeout, $ionicPlatform) {//, $cordovaNativeAudio) {
 
 	$scope.track = track;
 
 	function track() {
 		if ($state.current.name == 'app.game' && $rootScope.globals.sounds) {
-			$cordovaNativeAudio.stop('arcade');
+			//$cordovaNativeAudio.stop('arcade');
 		}
 	}
 	
 }
 
-function homeCtrl($scope, $rootScope, thisVersion, $timeout, $ionicPlatform, $cordovaNativeAudio) {
+function homeCtrl($scope, $rootScope, thisVersion, $timeout, $ionicPlatform) {//, $cordovaNativeAudio) {
 
 	$scope.version = thisVersion.version;
 	$scope.play = play;
 
 	function play(sound) {
 		if ($rootScope.globals.sounds) {
-			$cordovaNativeAudio.play(sound);
+			//$cordovaNativeAudio.play(sound);
 		}
 	}
 
 }
 
-function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $ionicPopup, $timeout, $translate, $filter, $ionicPlatform, $cordovaNativeAudio) {
+function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $ionicPopup, $timeout, $translate, $filter, $ionicPlatform) {//, $cordovaNativeAudio) {
 
 	var placeholders = $translate.instant(['DMG_GAME_LOADING', 'DMG_GAME_CONGRATULATIONS', 'DMG_GAME_YOUR_TIME', 'DMG_GAME_PLAY_AGAIN', 'DMG_GAME_THANK_YOU', 'DMG_GAME_THANK_YOU_VERY_MUCH']);
 
@@ -85,9 +85,9 @@ function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $i
 	function play(sound) {
 		if ($scope.sounds) {
 			if (sound == 'arcade') {
-				$cordovaNativeAudio.loop(sound);
+				//$cordovaNativeAudio.loop(sound);
 			} else {
-				$cordovaNativeAudio.play(sound);
+				//$cordovaNativeAudio.play(sound);
 			}
 		}
 	}
@@ -120,7 +120,7 @@ function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $i
 
 }
 
-function settingsCtrl($scope, $rootScope, $localstorageService, $translate, cookieName, $timeout, $ionicPlatform, $cordovaNativeAudio) {
+function settingsCtrl($scope, $rootScope, $localstorageService, $translate, cookieName, $timeout, $ionicPlatform) {//, $cordovaNativeAudio) {
 
 	$scope.language = $rootScope.globals.language;
 	$scope.level = $rootScope.globals.level;
