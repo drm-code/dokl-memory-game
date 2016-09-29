@@ -42,8 +42,9 @@ $chicken: #fffcdb !default;
     background-attachment: fixed;
 }
 
+/*.pane-home {background-image: url('../img/home-bg.jpg');}*/
 .pane-home {background-image: url('../img/home-bg.jpg');}
-.pane-game {background-image: url('../img/game-bg.jpg');}
+.pane-game {background-color: #6DD9F7;}
 .pane-about {background-image: url('../img/about-bg.png');}
 
 .col-button {
