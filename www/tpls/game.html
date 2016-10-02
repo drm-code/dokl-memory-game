@@ -1,4 +1,4 @@
-<ion-view view-title="{{ time | secondsToTime | date:'HH:mm:ss' }}" class="pane-game">
+<ion-view view-title="<i class='icon ion-android-alarm-clock'></i> <span>{{ time | secondsToTime | date:'mm:ss' }}" class="pane-game">
 	<ion-content>
 		<div class="row" ng-repeat="row in grid">
 			<div ng-if="level==2" class="col col-20"></div>

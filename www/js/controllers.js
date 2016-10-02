@@ -4,7 +4,7 @@ function indexCtrl($scope, $rootScope, $state, $timeout, $ionicPlatform, $cordov
 
 	function track() {
 		if ($state.current.name == 'app.game' && $rootScope.globals.sounds) {
-			// $cordovaNativeAudio.stop('arcade');
+			$cordovaNativeAudio.stop('arcade');
 		}
 	}
 	
@@ -13,25 +13,25 @@ function indexCtrl($scope, $rootScope, $state, $timeout, $ionicPlatform, $cordov
 function homeCtrl($scope, $rootScope, thisVersion, $timeout, $ionicPlatform, $cordovaNativeAudio) {
 
 	$scope.version = thisVersion.version;
-	// $scope.play = play;
+	$scope.play = play;
 
-	// function play(sound) {
-	// 	if ($rootScope.globals.sounds) {
-	// 		$cordovaNativeAudio.play(sound);
-	// 	}
-	// }
+	function play(sound) {
+		if ($rootScope.globals.sounds) {
+			$cordovaNativeAudio.play(sound);
+		}
+	}
 
 }
 
-function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $ionicPopup, $timeout, $translate, $filter, $ionicPlatform, $cordovaNativeAudio) {
+function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $ionicPopup, $timeout, $translate, $filter, $ionicPlatform, $state, $cordovaNativeAudio) {
 
-	var placeholders = $translate.instant(['DMG_GAME_LOADING', 'DMG_GAME_CONGRATULATIONS', 'DMG_GAME_YOUR_TIME', 'DMG_GAME_PLAY_AGAIN', 'DMG_GAME_THANK_YOU', 'DMG_GAME_THANK_YOU_VERY_MUCH']);
+	var placeholders = $translate.instant(['DMG_GAME_LOADING', 'DMG_GAME_CONGRATULATIONS', 'DMG_GAME_YOUR_TIME', 'DMG_GAME_PLAY_AGAIN', 'DMG_GAME_THANK_YOU', 'DMG_GAME_THANK_YOU_VERY_MUCH', 'DMG_GAME_NO', 'DMG_GAME_YES']);
 
 	$scope.level = $rootScope.globals.level;
 	$scope.sounds = $rootScope.globals.sounds;
 	$scope.flip = flip;
-	// $scope.play = play;
-	// $scope.play('arcade');
+	$scope.play = play;
+	$scope.play('arcade');
 	$scope.newGame = newGame();
 
 	function flip(card) {
@@ -41,29 +41,35 @@ function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $i
 				if (angular.isUndefined($scope.sPick)) {
 					if (angular.isUndefined($scope.fPick)) {
 						$scope.fPick = card;
-						// $scope.play('fx2');
+						$scope.play('fx2');
 					} else {
 						$scope.sPick = card;
 						if ($scope.fPick.icon === $scope.sPick.icon) {
 							$scope.matched++;
 							$scope.fPick = undefined;
 							$scope.sPick = undefined;
-							// $scope.play('fx40');
+							$scope.play('fx40');
 						} else {
-							// $scope.play('b10');
+							$scope.play('b10');
 						}
 						if ($scope.matched == $gameService.pairs()) {
 							$interval.cancel($scope.gameTime);
 							$ionicPopup.confirm({
 								title: placeholders.DMG_GAME_CONGRATULATIONS,
-								template: placeholders.DMG_GAME_YOUR_TIME + '<b>'+$filter('date')($filter('secondsToTime')( $scope.time), 'HH:mm:ss') + '</b>' + placeholders.DMG_GAME_PLAY_AGAIN
-							}).then(function(res) {
+								template: placeholders.DMG_GAME_YOUR_TIME + '<b>'+$filter('date')($filter('secondsToTime')( $scope.time), 'mm:ss') + '</b>' + placeholders.DMG_GAME_PLAY_AGAIN,
+								cancelText: placeholders.DMG_GAME_NO,
+								cancelType: 'button-dark',
+								okText: placeholders.DMG_GAME_YES,
+								okType: 'button-positive'
+							}).then(function (res) {
 								if (res) {
 									newGame();
 								} else {
 									$ionicPopup.alert({
 										title: placeholders.DMG_GAME_THANK_YOU,
 										template: placeholders.DMG_GAME_THANK_YOU_VERY_MUCH
+									}).then(function (res) {
+										$state.go('app.home');
 									});
 								}
 							});
@@ -74,10 +80,10 @@ function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $i
 					$gameService.flip($scope.sPick);
 					$scope.fPick = card;
 					$scope.sPick = undefined;
-					// $scope.play('fx2');
+					$scope.play('fx2');
 				}
 			} else {
-				// $scope.play('fx3');
+				$scope.play('fx3');
 			}
 		}
 	}
@@ -85,14 +91,15 @@ function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $i
 	function play(sound) {
 		if ($scope.sounds) {
 			if (sound == 'arcade') {
-				// $cordovaNativeAudio.loop(sound);
+				$cordovaNativeAudio.loop(sound);
 			} else {
-				// $cordovaNativeAudio.play(sound);
+				$cordovaNativeAudio.play(sound);
 			}
 		}
 	}
 
 	function newGame() {
+		$scope.shakeMe = false;
 		$scope.time = 0;
 		$scope.loading = loading();
 		$timeout(function() {
@@ -101,20 +108,21 @@ function gameCtrl($scope, $rootScope, $interval, $gameService, $ionicLoading, $i
 			$scope.fPick = undefined;
 			$scope.sPick = undefined;
 			$scope.gameTime = gameTime();
-		}, 1000);
+		}, 2000);
 		$scope.grid = $gameService.grid();
 	}
 
 	function gameTime() {
 		return $interval(function() {
+			$scope.shakeMe = $scope.time % 10 === 0;
 			return $scope.time++;
 		}, 1000, false);
 	}
 
 	function loading() {
 		$ionicLoading.show({
-			template: '<h1>'+placeholders.DMG_GAME_LOADING+'</h1>',
-			duration: 1500
+			template: '<ion-spinner icon="ripple" class="spinner-energized"></ion-spinner>',
+			duration: 2000
 		});
 	}
 

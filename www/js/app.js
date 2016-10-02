@@ -28,13 +28,13 @@ angular.module('dokl', [
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-    // $cordovaNativeAudio.preloadSimple('fx13', 'sounds/futuresoundfx-13.mp3');
-    // $cordovaNativeAudio.preloadSimple('arcade', 'sounds/Arcade80kbps.mp3');
-    // $cordovaNativeAudio.preloadSimple('fx2', 'sounds/futuresoundfx-2.mp3');
-    // $cordovaNativeAudio.preloadSimple('fx3', 'sounds/futuresoundfx-3.mp3');
-    // $cordovaNativeAudio.preloadSimple('fx40', 'sounds/futuresoundfx-40.mp3');
-    // $cordovaNativeAudio.preloadSimple('fx52', 'sounds/futuresoundfx-52.mp3');
-    // $cordovaNativeAudio.preloadSimple('b10', 'sounds/beep-10.mp3');
+    $cordovaNativeAudio.preloadSimple('fx13', 'sounds/futuresoundfx-13.mp3');
+    $cordovaNativeAudio.preloadSimple('arcade', 'sounds/Arcade80kbps.mp3');
+    $cordovaNativeAudio.preloadSimple('fx2', 'sounds/futuresoundfx-2.mp3');
+    $cordovaNativeAudio.preloadSimple('fx3', 'sounds/futuresoundfx-3.mp3');
+    $cordovaNativeAudio.preloadSimple('fx40', 'sounds/futuresoundfx-40.mp3');
+    $cordovaNativeAudio.preloadSimple('fx52', 'sounds/futuresoundfx-52.mp3');
+    $cordovaNativeAudio.preloadSimple('b10', 'sounds/beep-10.mp3');
   });
   
   // Try to catch physical OS back button
@@ -44,7 +44,7 @@ angular.module('dokl', [
       case 'app.settings':
       case 'app.about':                      
                       if ($rootScope.globals.sounds && $state.current.name == 'app.game') {
-                        // $cordovaNativeAudio.stop('arcade');
+                        $cordovaNativeAudio.stop('arcade');
                       }
                       $state.go('app.home');
                       break;
