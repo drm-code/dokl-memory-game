@@ -1,26 +1,21 @@
-![Alt Icon App](https://expiring-clouds.000webhostapp.com/assets/images/dokl-icon-app.png)
+> [!NOTE]
+> This project was archived and will be migrated to React Native
 
-# dokl Memory Game
+[<img src="https://yonathanp4.sg-host.com/assets/images/dmg-icon.jpeg" width="100" />](https://yonathanp4.sg-host.com/assets/images/dmg-icon.jpeg)
 
-## An android app that will capture you
+# Dokl Memory Game
+
+## An android game that will capture you
 
 Remember [colors][colorsRepo] project ???
-![Alt Icon App](https://expiring-clouds.000webhostapp.com/assets/images/colors.png)
 
-Well this is the mobile version of it, with some extra features, enjoy playing this game on your android device (+4.1.2 version of android is required)
+[<img src="https://yonathanp4.sg-host.com/assets/images/colors-repo.png" width="500" />](https://yonathanp4.sg-host.com/assets/images/colors-repo.png)
 
-The project is still in progress, so maybe you find some bugs like sounds interrumptions, slow rendering or blank cards, I stop deploy this app on Ionic, I promise I will deliver the React Native version.
+Well this is the mobile version of it, with some extra features (+4.1.2 version of android is required)
 
-## Try it [here][gosite]
+[<img src="https://yonathanp4.sg-host.com/assets/images/dmg-home.jpeg" width="250" />](https://yonathanp4.sg-host.com/assets/images/dmg-home.jpeg) [<img src="https://yonathanp4.sg-host.com/assets/images/dmg-settings.jpeg" width="250" />](https://yonathanp4.sg-host.com/assets/images/dmg-settings.jpeg) [<img src="https://yonathanp4.sg-host.com/assets/images/dmg-play.jpeg" width="250" />](https://yonathanp4.sg-host.com/assets/images/dmg-play.jpeg)
 
 
-![Alt Dokl Home](https://expiring-clouds.000webhostapp.com/assets/images/dokl-home.png) ![Alt Dokl Home](https://expiring-clouds.000webhostapp.com/assets/images/dokl-settings.png) ![Alt Dokl 3x3](https://expiring-clouds.000webhostapp.com/assets/images/dokl-3.png) ![Alt Dokl 5x5](https://expiring-clouds.000webhostapp.com/assets/images/dokl-5.png)
-
-#### Tools used on this projects
-
-[![N|Solid](https://expiring-clouds.000webhostapp.com/assets/images/angular.png)](https://angularjs.org/) [![N|Solid](https://expiring-clouds.000webhostapp.com/assets/images/ionic.png)](https://ionicframework.com/) [![N|Solid](https://expiring-clouds.000webhostapp.com/assets/images/gulp.png)](http://gulpjs.com/)
-
-[gosite]: <https://bit.ly/doklmem>
 [colorsRepo]: <https://github.com/drm-code/colors>
 
 2016 - Yonathan Pineda - yonathan.pineda@gmail.com
